@@ -1,0 +1,34 @@
+Graph Project
+=============
+
+Nate Mara & Evan Baker
+
+Instructions
+------------
+
+Each line in the input files for the graphinator are expected to have the
+following format:
+
+NODE_NAME-NODE_NAME=WEIGHT
+
+Where NODE_NAME's are the names of two nodes in your graph and WEIGHT is the
+weight of the edge between the two nodes listed on the line. This is a small
+example:
+
+graph.txt
+
+```
+e-g=10
+a-b=4
+a-g=1
+```
+
+To start the graphinator, provide the name of your graph file as a command
+line argument when starting the graphinator.
+
+```
+$ ./graphinator.py graph.txt
+```
+
+After this, the menu prompts should direct you through the graph-examining
+process!
