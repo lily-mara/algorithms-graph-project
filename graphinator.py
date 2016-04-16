@@ -27,11 +27,49 @@ def interact(graph):
     while True:
         print('[1] Compute shortest paths from nodes')
         print('[2] Compute minimum spanning tree')
+        print('[3] Check if two nodes are connected')
+        print('[4] Find shortest path between two nodes')
         choice = input('Enter a selection: ')
         if choice == '1':
             interact_dijstras(graph)
-        else:
+        elif choice == '2':
             interact_prims(graph)
+        elif choice == '3':
+            interact_connected(graph)
+        else:
+            interact_shortest_path(graph)
+
+
+def get_two_nodes(graph):
+    node1 = None
+    node2 = None
+
+    while node1 not in graph.nodes:
+        node1 = input('Enter a node {}: '.format(graph.nodes))
+
+    rest = graph.nodes - {node1}
+    while node2 not in rest:
+        node2 = input('Enter a node {}: '.format(rest))
+
+    return node1, node2
+
+
+def interact_shortest_path(graph):
+    x, y = get_two_nodes(graph)
+
+    if not graph.connected(x, y):
+        print('{} and {} are not connected.'.format(node1, node2))
+    else:
+        short, weight = graph.shortest_path(x, y)
+        print('->'.join(short), weight)
+
+
+def interact_connected(graph):
+    node1, node2 = get_two_nodes(graph)
+    if graph.connected(node1, node2):
+        print('{} and {} are connected.'.format(node1, node2))
+    else:
+        print('{} and {} are not connected.'.format(node1, node2))
 
 
 def interact_prims(graph):
@@ -106,6 +144,26 @@ class Graph(object):
             self._set_weight(b, a, w)
             self._set_weight(a, a, 0)
             self._set_weight
+
+    def connected(self, x, y):
+        if self.get_weight(x, y) != -1:
+            return True
+        d = self.dijkstra(x)
+        return y in d.keys()
+
+    def shortest_path(self, x, y):
+        d = self.dijkstra(x)
+        path = []
+
+        i = y
+        while i != x:
+            path.append(i)
+            i = d[i][1]
+
+        path.append(x)
+        path.reverse()
+
+        return path, d[y][0]
 
     def get_weight(self, x, y):
         x_idx = self.index[x]
