@@ -1,10 +1,13 @@
-Graph Project
-=============
+The Graphinator
+===============
 
 Nate Mara & Evan Baker
 
 Instructions
 ------------
+
+The Graphinator is written in Python 3 and requires no compile step to be run,
+nor does it require any third-party libraries to be installed.
 
 Each line in the input files for the graphinator are expected to have the
 following format:
