@@ -27,10 +27,13 @@ a-g=1
 ```
 
 To start the graphinator, provide the name of your graph file as a command
-line argument when starting the graphinator.
+line argument when starting the graphinator. On linux, you can start the
+python file directly, as it is executable, or you can start it using the
+python interpreter.
 
 ```
 $ ./graphinator.py graph.txt
+$ python3 graphinator.py graph.txt
 ```
 
 After this, the menu prompts should direct you through the graph-examining
